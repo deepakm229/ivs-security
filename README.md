@@ -86,10 +86,10 @@ prisma/
 
 ## Deployment
 
-1. Deploy to Vercel
-2. Use PostgreSQL (Neon/Supabase) for production — update `DATABASE_URL` and change Prisma provider to `postgresql`
-3. Set all environment variables in Vercel dashboard
-4. Run `npx prisma db push` against production DB and seed admin user
+1. Create a [Supabase](https://supabase.com) project and copy the database connection strings
+2. Set `DATABASE_URL` to the **Transaction pooler** URL (port `6543`, with `?pgbouncer=true`) and `DIRECT_URL` to the **Session/direct** URL (port `5432`)
+3. Deploy to Vercel and set all environment variables from `.env.example`
+4. Run `npx prisma db push` against the production DB and `npm run db:seed` for the admin user
 
 ## Customization
 
