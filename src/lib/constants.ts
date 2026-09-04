@@ -1,5 +1,13 @@
 export const SITE_NAME = "IVS Security";
 
+/** Resolves a valid absolute site URL (empty env vars are treated as unset). */
+export function getSiteUrl() {
+  const fromEnv = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (fromEnv) return fromEnv.replace(/\/$/, "");
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  return "http://localhost:3000";
+}
+
 export const LEAD_STATUSES = [
   "NEW",
   "CONTACTED",

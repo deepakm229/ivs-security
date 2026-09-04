@@ -4,7 +4,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { MobileCTA } from "@/components/layout/MobileCTA";
 import { Providers } from "@/components/providers";
-import { SITE_NAME } from "@/lib/constants";
+import { SITE_NAME, getSiteUrl } from "@/lib/constants";
 import "./globals.css";
 
 const inter = Inter({
@@ -12,8 +12,8 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-const city = process.env.NEXT_PUBLIC_CITY ?? "Your City";
+const siteUrl = getSiteUrl();
+const city = process.env.NEXT_PUBLIC_CITY?.trim() || "Your City";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
