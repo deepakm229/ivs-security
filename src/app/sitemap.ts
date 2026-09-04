@@ -11,6 +11,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/services/residential",
     "/services/commercial",
     "/services/events",
+    "/services/industrial",
+    "/services/bodyguards",
     "/contact",
     "/quote",
   ];

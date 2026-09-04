@@ -11,10 +11,11 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   const phone = process.env.NEXT_PUBLIC_PHONE ?? "+919876543210";
-  const email = process.env.NEXT_PUBLIC_EMAIL ?? "info@ivssecurity.com";
+  const email = process.env.NEXT_PUBLIC_EMAIL ?? "ivsindia1986@gmail.com";
   const address =
-    process.env.NEXT_PUBLIC_ADDRESS ?? "123 Security Lane, Your City";
-  const city = process.env.NEXT_PUBLIC_CITY ?? "Your City";
+    process.env.NEXT_PUBLIC_ADDRESS ??
+    "No. 315, R-4, Vakil Marigold, Vakil Township, Chandapura, Bangalore - 562107";
+  const city = process.env.NEXT_PUBLIC_CITY ?? "Bangalore";
 
   return (
     <>
@@ -43,6 +44,29 @@ export default function ContactPage() {
                 <MapPin className="mt-0.5 h-4 w-4 text-navy-700" />
                 <span>{address}</span>
               </li>
+            </ul>
+          </div>
+
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h2 className="text-lg font-semibold text-navy-900">Opening Hours</h2>
+            <ul className="mt-4">
+              {[
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+              ].map((day) => (
+                <li
+                  key={day}
+                  className="flex items-center justify-between border-b border-slate-200 py-3 text-sm last:border-b-0 last:pb-0"
+                >
+                  <span className="text-slate-500">{day}</span>
+                  <span className="font-medium text-slate-900">12:00 AM - 11:59 PM</span>
+                </li>
+              ))}
             </ul>
           </div>
 

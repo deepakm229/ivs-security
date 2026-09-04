@@ -13,7 +13,7 @@ const inter = Inter({
 });
 
 const siteUrl = getSiteUrl();
-const city = process.env.NEXT_PUBLIC_CITY?.trim() || "Your City";
+const city = process.env.NEXT_PUBLIC_CITY?.trim() || "Bangalore";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

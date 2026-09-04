@@ -30,9 +30,14 @@ export function QuoteForm() {
   const form = useForm<QuoteFormValues>({
     resolver: zodResolver(quoteFormSchema),
     defaultValues: {
-      serviceType: ["RESIDENTIAL", "COMMERCIAL", "EVENT", "GENERAL"].includes(
-        defaultService,
-      )
+      serviceType: [
+        "RESIDENTIAL",
+        "COMMERCIAL",
+        "EVENT",
+        "INDUSTRIAL",
+        "BODYGUARD",
+        "GENERAL",
+      ].includes(defaultService)
         ? defaultService
         : "RESIDENTIAL",
       name: "",
@@ -186,6 +191,62 @@ export function QuoteForm() {
           <div className="space-y-2 md:col-span-2">
             <Label htmlFor="eventDuration">Event Duration</Label>
             <Input id="eventDuration" {...form.register("eventDuration")} placeholder="e.g. 6 hours" />
+          </div>
+        </div>
+      )}
+
+      {serviceType === "INDUSTRIAL" && (
+        <div className="grid gap-5 rounded-xl border border-slate-200 bg-slate-50 p-5 md:grid-cols-3">
+          <div className="space-y-2">
+            <Label htmlFor="businessType">Facility Type</Label>
+            <Input
+              id="businessType"
+              {...form.register("businessType")}
+              placeholder="Factory, plant, warehouse..."
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="guardsNeeded">Guards Needed</Label>
+            <Input id="guardsNeeded" {...form.register("guardsNeeded")} />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="shiftType">Shift Type</Label>
+            <Select id="shiftType" {...form.register("shiftType")}>
+              <option value="">Select shift</option>
+              {SHIFT_TYPES.map((shift) => (
+                <option key={shift} value={shift}>
+                  {shift}
+                </option>
+              ))}
+            </Select>
+          </div>
+        </div>
+      )}
+
+      {serviceType === "BODYGUARD" && (
+        <div className="grid gap-5 rounded-xl border border-slate-200 bg-slate-50 p-5 md:grid-cols-3">
+          <div className="space-y-2">
+            <Label htmlFor="guardsNeeded">Bodyguards Needed</Label>
+            <Input id="guardsNeeded" {...form.register("guardsNeeded")} placeholder="e.g. 1" />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="shiftType">Coverage Hours</Label>
+            <Select id="shiftType" {...form.register("shiftType")}>
+              <option value="">Select coverage</option>
+              {SHIFT_TYPES.map((shift) => (
+                <option key={shift} value={shift}>
+                  {shift}
+                </option>
+              ))}
+            </Select>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="contractLength">Assignment Length</Label>
+            <Input
+              id="contractLength"
+              {...form.register("contractLength")}
+              placeholder="1 day, 1 week, 1 month..."
+            />
           </div>
         </div>
       )}

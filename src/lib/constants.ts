@@ -22,6 +22,8 @@ export const SERVICE_TYPES = [
   { value: "RESIDENTIAL", label: "Residential Security" },
   { value: "COMMERCIAL", label: "Commercial Security" },
   { value: "EVENT", label: "Event Security" },
+  { value: "INDUSTRIAL", label: "Industrial Security Guards" },
+  { value: "BODYGUARD", label: "Personal Body Guards" },
   { value: "GENERAL", label: "General Inquiry" },
 ] as const;
 

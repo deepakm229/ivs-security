@@ -7,7 +7,14 @@ export const quoteFormSchema = z.object({
     .min(10, "Enter a valid phone number")
     .max(15, "Enter a valid phone number"),
   email: z.string().email("Enter a valid email").optional().or(z.literal("")),
-  serviceType: z.enum(["RESIDENTIAL", "COMMERCIAL", "EVENT", "GENERAL"]),
+  serviceType: z.enum([
+    "RESIDENTIAL",
+    "COMMERCIAL",
+    "EVENT",
+    "INDUSTRIAL",
+    "BODYGUARD",
+    "GENERAL",
+  ]),
   location: z.string().min(2, "Location is required"),
   message: z.string().optional(),
   buildingName: z.string().optional(),
@@ -70,6 +77,18 @@ export function buildQuoteMetadata(values: QuoteFormValues) {
     }
     if (values.guardsNeeded) metadata.guardsNeeded = values.guardsNeeded;
     if (values.eventDuration) metadata.eventDuration = values.eventDuration;
+  }
+
+  if (values.serviceType === "INDUSTRIAL") {
+    if (values.businessType) metadata.businessType = values.businessType;
+    if (values.guardsNeeded) metadata.guardsNeeded = values.guardsNeeded;
+    if (values.shiftType) metadata.shiftType = values.shiftType;
+  }
+
+  if (values.serviceType === "BODYGUARD") {
+    if (values.guardsNeeded) metadata.guardsNeeded = values.guardsNeeded;
+    if (values.shiftType) metadata.shiftType = values.shiftType;
+    if (values.contractLength) metadata.contractLength = values.contractLength;
   }
 
   return metadata;

@@ -8,9 +8,10 @@ import { SITE_NAME } from "@/lib/constants";
 export function Footer() {
   const pathname = usePathname();
   const phone = process.env.NEXT_PUBLIC_PHONE ?? "+919876543210";
-  const email = process.env.NEXT_PUBLIC_EMAIL ?? "info@ivssecurity.com";
+  const email = process.env.NEXT_PUBLIC_EMAIL ?? "ivsindia1986@gmail.com";
   const address =
-    process.env.NEXT_PUBLIC_ADDRESS ?? "123 Security Lane, Your City";
+    process.env.NEXT_PUBLIC_ADDRESS ??
+    "No. 315, R-4, Vakil Marigold, Vakil Township, Chandapura, Bangalore - 562107";
 
   if (pathname.startsWith("/admin")) return null;
 
@@ -45,6 +46,16 @@ export function Footer() {
             <li>
               <Link href="/services/events" className="hover:text-white">
                 Event Security
+              </Link>
+            </li>
+            <li>
+              <Link href="/services/industrial" className="hover:text-white">
+                Industrial Security Guards
+              </Link>
+            </li>
+            <li>
+              <Link href="/services/bodyguards" className="hover:text-white">
+                Personal Body Guards
               </Link>
             </li>
             <li>

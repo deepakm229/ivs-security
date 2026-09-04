@@ -1,5 +1,12 @@
 import Link from "next/link";
-import { ArrowRight, Building2, CalendarDays, Home } from "lucide-react";
+import {
+  ArrowRight,
+  Building2,
+  CalendarDays,
+  Factory,
+  Home,
+  UserRound,
+} from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -28,6 +35,20 @@ export function ServiceCards() {
       description:
         "Temporary security teams for weddings, corporate events, exhibitions, and concerts.",
     },
+    {
+      href: "/services/industrial",
+      icon: Factory,
+      title: "Industrial Security Guards Service",
+      description:
+        "Trained guards for factories, plants, and industrial campuses with gate and perimeter coverage.",
+    },
+    {
+      href: "/services/bodyguards",
+      icon: UserRound,
+      title: "Personal Body Guards Service",
+      description:
+        "Discreet, trained personal protection for executives, families, and high-profile individuals.",
+    },
   ];
 
   return (
@@ -35,12 +56,12 @@ export function ServiceCards() {
       <div className="mb-10 max-w-2xl">
         <h2 className="text-3xl font-bold text-navy-900">Our Security Services</h2>
         <p className="mt-3 text-slate-600">
-          Manpower solutions tailored for residential, commercial, and event
-          requirements across your local area.
+          Manpower solutions tailored for residential, commercial, industrial,
+          event, and personal protection requirements across your local area.
         </p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((service) => (
           <Link
             key={service.href}

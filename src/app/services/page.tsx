@@ -1,12 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Building2, CalendarDays, Home } from "lucide-react";
+import {
+  ArrowRight,
+  Building2,
+  CalendarDays,
+  Factory,
+  Home,
+  UserRound,
+} from "lucide-react";
 import { PageHeader } from "@/components/layout/PageHeader";
 
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Explore IVS Security services for residential buildings, commercial facilities, and events.",
+    "Explore IVS Security services for residential buildings, commercial facilities, industrial sites, events, and personal protection.",
 };
 
 const services = [
@@ -28,6 +35,18 @@ const services = [
     title: "Event Security",
     points: ["Crowd management", "Entry and parking control", "VIP movement support"],
   },
+  {
+    href: "/services/industrial",
+    icon: Factory,
+    title: "Industrial Security Guards Service",
+    points: ["Factory and plant coverage", "Gate and perimeter control", "Shift-based industrial manpower"],
+  },
+  {
+    href: "/services/bodyguards",
+    icon: UserRound,
+    title: "Personal Body Guards Service",
+    points: ["Executive protection", "Travel and event escort", "Discreet personal security"],
+  },
 ];
 
 export default function ServicesPage() {
@@ -35,10 +54,10 @@ export default function ServicesPage() {
     <>
       <PageHeader
         title="Security Services"
-        description="Professional manpower solutions for residential societies, commercial premises, and events."
+        description="Professional manpower solutions for residential societies, commercial premises, industrial sites, events, and personal protection."
       />
       <section className="mx-auto max-w-6xl px-4 py-12">
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
             <div
               key={service.href}
