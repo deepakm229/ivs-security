@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { MobileCTA } from "@/components/layout/MobileCTA";
 import { Providers } from "@/components/providers";
 import { SITE_NAME, getSiteUrl } from "@/lib/constants";
+import { SITE_CITY } from "@/lib/site-contact";
 import "./globals.css";
 
 const inter = Inter({
@@ -13,7 +14,7 @@ const inter = Inter({
 });
 
 const siteUrl = getSiteUrl();
-const city = process.env.NEXT_PUBLIC_CITY?.trim() || "Bangalore";
+const city = SITE_CITY;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

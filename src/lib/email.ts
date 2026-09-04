@@ -1,5 +1,6 @@
 import type { Lead } from "@prisma/client";
 import { getServiceLabel } from "./constants";
+import { SITE_EMAIL } from "./site-contact";
 
 type LeadEmailPayload = Pick<
   Lead,
@@ -7,7 +8,7 @@ type LeadEmailPayload = Pick<
 >;
 
 export async function sendLeadNotification(lead: LeadEmailPayload) {
-  const adminEmail = process.env.ADMIN_EMAIL ?? process.env.NEXT_PUBLIC_EMAIL;
+  const adminEmail = process.env.ADMIN_EMAIL ?? SITE_EMAIL;
 
   if (!adminEmail) {
     console.warn("ADMIN_EMAIL not set; skipping lead notification email.");

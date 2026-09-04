@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { PageHeader } from "@/components/layout/PageHeader";
+import { SITE_ADDRESS, SITE_CITY, SITE_EMAIL } from "@/lib/site-contact";
 import { Mail, MapPin, Phone } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -11,11 +12,9 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   const phone = process.env.NEXT_PUBLIC_PHONE ?? "+919876543210";
-  const email = process.env.NEXT_PUBLIC_EMAIL ?? "ivsindia1986@gmail.com";
-  const address =
-    process.env.NEXT_PUBLIC_ADDRESS ??
-    "No. 315, R-4, Vakil Marigold, Vakil Township, Chandapura, Bangalore - 562107";
-  const city = process.env.NEXT_PUBLIC_CITY ?? "Bangalore";
+  const email = SITE_EMAIL;
+  const address = SITE_ADDRESS;
+  const city = SITE_CITY;
 
   return (
     <>

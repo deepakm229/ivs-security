@@ -4,14 +4,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Mail, MapPin, Phone, Shield } from "lucide-react";
 import { SITE_NAME } from "@/lib/constants";
+import { SITE_ADDRESS, SITE_EMAIL } from "@/lib/site-contact";
 
 export function Footer() {
   const pathname = usePathname();
   const phone = process.env.NEXT_PUBLIC_PHONE ?? "+919876543210";
-  const email = process.env.NEXT_PUBLIC_EMAIL ?? "ivsindia1986@gmail.com";
-  const address =
-    process.env.NEXT_PUBLIC_ADDRESS ??
-    "No. 315, R-4, Vakil Marigold, Vakil Township, Chandapura, Bangalore - 562107";
+  const email = SITE_EMAIL;
+  const address = SITE_ADDRESS;
 
   if (pathname.startsWith("/admin")) return null;
 
