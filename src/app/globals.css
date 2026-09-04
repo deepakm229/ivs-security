@@ -2,25 +2,34 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0f172a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-navy-50: #eef3f8;
+  --color-navy-100: #d9e4ef;
+  --color-navy-200: #b8c9dc;
+  --color-navy-500: #3d5f84;
+  --color-navy-700: #1e3a5f;
+  --color-navy-800: #172f4d;
+  --color-navy-900: #12263d;
+  --color-navy-950: #0b1728;
+  --color-gold-300: #e6cf7a;
+  --color-gold-400: #d4b44a;
+  --color-gold-500: #c9a227;
+  --font-sans: var(--font-inter);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .parallax-bg {
+    transform: none !important;
+  }
 }
