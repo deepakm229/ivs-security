@@ -58,6 +58,11 @@ export function Footer() {
               </Link>
             </li>
             <li>
+              <Link href="/gallery" className="hover:text-white">
+                Gallery
+              </Link>
+            </li>
+            <li>
               <Link href="/quote" className="hover:text-white">
                 Request a Quote
               </Link>

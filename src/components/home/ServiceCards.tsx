@@ -162,19 +162,21 @@ function ServiceCard({ service }: { service: Service }) {
   );
 }
 
-export function ServiceCards() {
+export function ServiceCards({ showIntro = true }: { showIntro?: boolean } = {}) {
   const compact = services.filter((service) => service.variant === "compact");
   const wide = services.filter((service) => service.variant === "wide");
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-16">
-      <div className="mb-10 max-w-2xl">
-        <h2 className="text-3xl font-bold text-navy-900">Our Security Services</h2>
-        <p className="mt-3 text-slate-600">
-          Manpower solutions tailored for residential, commercial, industrial,
-          event, and personal protection requirements across your local area.
-        </p>
-      </div>
+    <section className={cn("mx-auto max-w-6xl px-4", showIntro ? "py-16" : "py-12")}>
+      {showIntro ? (
+        <div className="mb-10 max-w-2xl">
+          <h2 className="text-3xl font-bold text-navy-900">Our Security Services</h2>
+          <p className="mt-3 text-slate-600">
+            Manpower solutions tailored for residential, commercial, industrial,
+            event, and personal protection requirements across your local area.
+          </p>
+        </div>
+      ) : null}
 
       <div className="grid gap-5">
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
