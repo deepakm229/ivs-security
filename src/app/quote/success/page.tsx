@@ -8,7 +8,7 @@ export default function QuoteSuccessPage() {
       <h1 className="text-3xl font-bold text-navy-900">Quote Request Received</h1>
       <p className="mt-4 text-slate-600">
         Thank you for your interest in IVS Security. Our team will review your
-        requirements and contact you within 24 hours.
+        requirements and contact you as soon as possible.
       </p>
       <Link href="/" className={cn(buttonVariants(), "mt-8 inline-flex")}>
         Back to Home

@@ -28,7 +28,7 @@ const services: Service[] = [
     icon: Home,
     title: "Residential Security",
     description:
-      "24/7 gate security, visitor management, and patrol for apartments and housing societies.",
+      "Round-the-clock gate security, visitor management, and patrol for apartments and housing societies.",
     image: "/images/services/residential.jpg",
     imagePosition: "68% center",
     variant: "compact",

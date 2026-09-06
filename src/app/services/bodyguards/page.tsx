@@ -37,7 +37,7 @@ export default function PersonalBodyguardsPage() {
             <h3 className="font-semibold text-navy-900">Coverage options</h3>
             <ul className="mt-3 space-y-2 text-sm text-slate-700">
               <li>Single and multi-guard details</li>
-              <li>Day, night, or 24-hour protection</li>
+              <li>Day, night, or round-the-clock protection</li>
               <li>Local and outstation assignments</li>
               <li>Confidential client handling</li>
             </ul>

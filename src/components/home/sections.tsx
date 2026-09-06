@@ -13,7 +13,7 @@ export function CTASection() {
       <div className="rounded-3xl bg-navy-900 px-6 py-10 text-center text-white md:px-12">
         <h2 className="text-3xl font-bold">Need security personnel for your site?</h2>
         <p className="mx-auto mt-3 max-w-2xl text-slate-300">
-          Share your requirements and our team will contact you within 24 hours
+          Share your requirements and our team will contact you as soon as possible
           with a tailored quote.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-3">

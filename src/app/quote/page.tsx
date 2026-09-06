@@ -14,7 +14,7 @@ export default function QuotePage() {
     <>
       <PageHeader
         title="Request a Quote"
-        description="Tell us about your security requirement and our team will contact you within 24 hours."
+        description="Tell us about your security requirement and our team will contact you as soon as possible."
       />
       <section className="mx-auto max-w-3xl px-4 py-12">
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">

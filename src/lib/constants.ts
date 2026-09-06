@@ -29,7 +29,7 @@ export const SERVICE_TYPES = [
 
 export type ServiceType = (typeof SERVICE_TYPES)[number]["value"];
 
-export const SHIFT_TYPES = ["8 Hour", "12 Hour", "24 Hour"] as const;
+export const SHIFT_TYPES = ["8 Hour", "12 Hour"] as const;
 
 export const NAV_LINKS = [
   { href: "/", label: "Home" },

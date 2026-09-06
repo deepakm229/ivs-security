@@ -37,7 +37,7 @@ export default function AboutPage() {
               <li>Licensed and compliant security operations</li>
               <li>Background-verified guard recruitment</li>
               <li>Supervisor visits and performance monitoring</li>
-              <li>24-hour replacement support for active contracts</li>
+              <li>Fast replacement support for active contracts</li>
               <li>Coverage across nearby residential and commercial areas</li>
             </ul>
           </div>

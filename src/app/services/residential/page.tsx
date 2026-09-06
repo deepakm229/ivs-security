@@ -23,8 +23,8 @@ export default function ResidentialSecurityPage() {
             <h2 className="text-2xl font-bold text-navy-900">Protect your community</h2>
             <p>
               Our residential security teams manage gate access, visitor logs, delivery
-              coordination, and night patrols. We provide uniformed guards for 8, 12,
-              and 24-hour shifts based on your society&apos;s needs.
+              coordination, and night patrols. We provide uniformed guards for 8 and
+              12-hour shifts based on your society&apos;s needs.
             </p>
             <ul className="space-y-2 text-sm">
               <li>• Main gate and lobby security</li>

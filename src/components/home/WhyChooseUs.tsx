@@ -21,8 +21,8 @@ const points: {
   },
   {
     icon: Clock,
-    title: "Quick guard replacement within 24 hours",
-    description: "We ensure zero disruption with our fast replacement promise.",
+    title: "Fast guard replacement when you need it",
+    description: "We move quickly on replacements so your site stays covered.",
   },
   {
     icon: Award,
@@ -31,7 +31,7 @@ const points: {
   },
   {
     icon: CalendarClock,
-    title: "Flexible shift options: 8, 12, and 24 hours",
+    title: "Flexible shift options: 8 and 12 hours",
     description: "Choose shifts that fit your operational requirements.",
   },
   {
