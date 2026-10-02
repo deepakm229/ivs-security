@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { db } from "@/lib/db";
 import { sendLeadNotification } from "@/lib/email";
 import { quoteFormSchema } from "@/lib/validations";
 
@@ -20,6 +21,20 @@ export async function POST(request: Request) {
         : {};
 
     const source = body.source === "CONTACT" ? "CONTACT" : "QUOTE";
+
+    await db.lead.create({
+      data: {
+        name: parsed.data.name,
+        phone: parsed.data.phone,
+        email: parsed.data.email || null,
+        serviceType: parsed.data.serviceType,
+        location: parsed.data.location,
+        message: parsed.data.message || null,
+        metadata: JSON.stringify(metadata),
+        source,
+        status: "NEW",
+      },
+    });
 
     const result = await sendLeadNotification({
       name: parsed.data.name,

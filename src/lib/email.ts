@@ -15,16 +15,44 @@ export type LeadEmailPayload = {
 
 type SendResult = { ok: true } | { ok: false; error: string };
 
+function normalizeEnv(value: string | undefined) {
+  if (!value) return undefined;
+  const trimmed = value.trim();
+  if (
+    (trimmed.startsWith('"') && trimmed.endsWith('"')) ||
+    (trimmed.startsWith("'") && trimmed.endsWith("'"))
+  ) {
+    return trimmed.slice(1, -1).trim();
+  }
+  return trimmed;
+}
+
+function getEnv(name: string) {
+  return normalizeEnv(process.env[name]);
+}
+
+function isPlaceholderApiKey(apiKey: string) {
+  return (
+    apiKey.includes("your_resend_api_key") ||
+    apiKey === "re_xxxxxxxx" ||
+    apiKey.endsWith("_here")
+  );
+}
+
 function getResendClient() {
-  const apiKey = process.env.RESEND_API_KEY?.trim();
-  if (!apiKey) return null;
+  const apiKey = getEnv("RESEND_API_KEY");
+  if (!apiKey || isPlaceholderApiKey(apiKey)) return null;
   return new Resend(apiKey);
+}
+
+function isProduction() {
+  return process.env.NODE_ENV === "production" || Boolean(process.env.VERCEL);
 }
 
 export async function sendLeadNotification(
   lead: LeadEmailPayload,
 ): Promise<SendResult> {
-  const adminEmail = process.env.ADMIN_EMAIL ?? SITE_EMAIL;
+  const adminEmail = getEnv("ADMIN_EMAIL") ?? SITE_EMAIL;
 
   if (!adminEmail) {
     console.warn("ADMIN_EMAIL not set; skipping lead notification email.");
@@ -79,16 +107,31 @@ export async function sendLeadNotification(
       : `New Quote Request — ${serviceLabel} — ${lead.name}`;
 
   const resend = getResendClient();
+  const fromEmail = getEnv("RESEND_FROM_EMAIL");
 
   if (!resend) {
+    const message = isProduction()
+      ? "RESEND_API_KEY is missing or invalid on the server"
+      : "RESEND_API_KEY not set (dev fallback: logged only)";
+
+    if (isProduction()) {
+      console.error("[Lead notification]", message);
+      return { ok: false, error: message };
+    }
+
     console.info("[Lead notification]", { to: adminEmail, subject, text });
     return { ok: true };
   }
 
-  const fromEmail = process.env.RESEND_FROM_EMAIL?.trim();
   if (!fromEmail) {
     console.error("RESEND_FROM_EMAIL not set; unable to send lead notification.");
     return { ok: false, error: "Sender email not configured" };
+  }
+
+  if (fromEmail.includes("onboarding@resend.dev")) {
+    console.warn(
+      "[Lead notification] Using Resend test sender. Emails can only be delivered to the email address on your Resend account. Set ADMIN_EMAIL to that address, or verify a domain and update RESEND_FROM_EMAIL.",
+    );
   }
 
   try {
@@ -101,7 +144,12 @@ export async function sendLeadNotification(
     });
 
     if (error) {
-      console.error("[Lead notification] Resend error:", error);
+      console.error("[Lead notification] Resend error:", {
+        message: error.message,
+        name: error.name,
+        to: adminEmail,
+        from: fromEmail,
+      });
       return { ok: false, error: error.message };
     }
 

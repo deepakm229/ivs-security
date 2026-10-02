@@ -1,12 +1,13 @@
-import Link from "next/link";
 import { format } from "date-fns";
-import { auth, signOut } from "@/auth";
 import { LeadTable } from "@/components/admin/LeadTable";
 import { Button } from "@/components/ui/button";
+import { signOutAction } from "@/lib/auth/actions";
+import { PERMISSIONS } from "@/lib/auth/permissions";
+import { requirePermissionForPage } from "@/lib/auth/guards";
 import { db } from "@/lib/db";
 
 export default async function AdminDashboardPage() {
-  const session = await auth();
+  const user = await requirePermissionForPage(PERMISSIONS.LEADS_READ);
 
   const leads = await db.lead.findMany({
     orderBy: { createdAt: "desc" },
@@ -26,16 +27,11 @@ export default async function AdminDashboardPage() {
         <div>
           <h1 className="text-2xl font-bold text-navy-900">Lead Dashboard</h1>
           <p className="text-sm text-slate-600">
-            Signed in as {session?.user?.email} · {newCount} new lead
+            Signed in as {user.email} · {newCount} new lead
             {newCount === 1 ? "" : "s"}
           </p>
         </div>
-        <form
-          action={async () => {
-            "use server";
-            await signOut({ redirectTo: "/admin/login" });
-          }}
-        >
+        <form action={signOutAction}>
           <Button type="submit" variant="outline">
             Sign Out
           </Button>

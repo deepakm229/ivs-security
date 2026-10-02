@@ -1,0 +1,6 @@
+# Supabase local CLI config. Apply migrations to your hosted project via:
+# supabase db push --linked
+# Or run SQL from supabase/migrations/ in the Supabase SQL Editor.
+
+[auth]
+enable_signup = false

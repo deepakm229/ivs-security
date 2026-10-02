@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { format } from "date-fns";
 import { LeadUpdateForm } from "@/components/admin/LeadUpdateForm";
 import { Badge } from "@/components/ui/badge";
+import { PERMISSIONS } from "@/lib/auth/permissions";
+import { requirePermissionForPage } from "@/lib/auth/guards";
 import { db } from "@/lib/db";
 import { getServiceLabel, getStatusLabel } from "@/lib/constants";
 
@@ -11,6 +13,8 @@ export default async function LeadDetailPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  await requirePermissionForPage(PERMISSIONS.LEADS_READ);
+
   const { id } = await params;
   const lead = await db.lead.findUnique({ where: { id } });
 

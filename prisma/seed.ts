@@ -1,24 +1,47 @@
-import bcrypt from "bcryptjs";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-async function main() {
-  const email = process.env.ADMIN_EMAIL ?? "admin@ivssecurity.com";
-  const password = process.env.ADMIN_PASSWORD ?? "admin123";
-  const passwordHash = await bcrypt.hash(password, 12);
+const PERMISSIONS = [
+  { slug: "leads:read", name: "View leads" },
+  { slug: "leads:write", name: "Update leads" },
+] as const;
 
-  await prisma.adminUser.upsert({
-    where: { email },
-    update: { passwordHash, name: "IVS Admin" },
+async function main() {
+  const adminRole = await prisma.role.upsert({
+    where: { slug: "admin" },
+    update: { name: "Administrator" },
     create: {
-      email,
-      passwordHash,
-      name: "IVS Admin",
+      slug: "admin",
+      name: "Administrator",
+      description: "Full access to lead management and admin portal",
     },
   });
 
-  console.log(`Admin user ready: ${email}`);
+  for (const permission of PERMISSIONS) {
+    const row = await prisma.permission.upsert({
+      where: { slug: permission.slug },
+      update: { name: permission.name },
+      create: permission,
+    });
+
+    await prisma.rolePermission.upsert({
+      where: {
+        roleId_permissionId: {
+          roleId: adminRole.id,
+          permissionId: row.id,
+        },
+      },
+      update: {},
+      create: {
+        roleId: adminRole.id,
+        permissionId: row.id,
+      },
+    });
+  }
+
+  console.log("Roles and permissions seeded (admin → leads:read, leads:write).");
+  console.log("Create an admin user with: npm run create-admin");
 }
 
 main()

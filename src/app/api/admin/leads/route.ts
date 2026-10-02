@@ -1,11 +1,20 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/auth";
+import { PERMISSIONS } from "@/lib/auth/permissions";
+import {
+  forbiddenResponse,
+  requirePermission,
+  unauthorizedResponse,
+} from "@/lib/auth/guards";
+import { ForbiddenError, UnauthorizedError } from "@/lib/auth/errors";
 import { db } from "@/lib/db";
 
 export async function GET(request: Request) {
-  const session = await auth();
-  if (!session?.user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  try {
+    await requirePermission(PERMISSIONS.LEADS_READ);
+  } catch (error) {
+    if (error instanceof UnauthorizedError) return unauthorizedResponse();
+    if (error instanceof ForbiddenError) return forbiddenResponse();
+    throw error;
   }
 
   const { searchParams } = new URL(request.url);
