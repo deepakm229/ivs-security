@@ -42,7 +42,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} h-full`}>
       <body className="min-h-full bg-white pb-20 text-slate-900 antialiased md:pb-0">
-        <Providers>
+        <Providers
+          supabaseUrl={process.env.SUPABASE_URL ?? ""}
+          supabaseAnonKey={process.env.SUPABASE_ANON_KEY ?? ""}
+        >
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
