@@ -1,7 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-export async function createClient() {
+export async function createClient(options?: { readOnly?: boolean }) {
   const cookieStore = await cookies();
 
   return createServerClient(
@@ -13,9 +13,11 @@ export async function createClient() {
           return cookieStore.getAll();
         },
         setAll(cookiesToSet) {
+          if (options?.readOnly) return;
+
           try {
-            cookiesToSet.forEach(({ name, value, options }) =>
-              cookieStore.set(name, value, options),
+            cookiesToSet.forEach(({ name, value, options: cookieOptions }) =>
+              cookieStore.set(name, value, cookieOptions),
             );
           } catch {
             // Called from a Server Component — ignore if cookies are read-only.
