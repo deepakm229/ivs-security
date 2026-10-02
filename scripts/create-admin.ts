@@ -12,7 +12,7 @@ function requireEnv(name: string) {
 }
 
 async function main() {
-  const supabaseUrl = requireEnv("NEXT_PUBLIC_SUPABASE_URL");
+  const supabaseUrl = requireEnv("SUPABASE_URL");
   const serviceRoleKey = requireEnv("SUPABASE_SERVICE_ROLE_KEY");
   const email = requireEnv("ADMIN_EMAIL");
   const password = requireEnv("ADMIN_PASSWORD");

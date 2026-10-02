@@ -39,7 +39,7 @@ cp .env.example .env
 Key variables:
 
 - `DATABASE_URL` / `DIRECT_URL` — Supabase Postgres (pooler + direct)
-- `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` — Supabase API
+- `SUPABASE_URL` / `SUPABASE_ANON_KEY` — Supabase API
 - `SUPABASE_SERVICE_ROLE_KEY` — server-only (admin provisioning script)
 - `ADMIN_EMAIL` / `ADMIN_PASSWORD` — first admin (for `npm run create-admin`)
 - `RESEND_*` — quote/contact notification emails
