@@ -97,7 +97,7 @@ export function LeadTable({ leads }: { leads: LeadListItem[] }) {
                   <td className="px-4 py-3">
                     <Link
                       href={`/admin/leads/${lead.id}`}
-                      className="font-medium text-navy-700 hover:underline"
+                      className="font-medium text-navy-700 underline"
                     >
                       View
                     </Link>

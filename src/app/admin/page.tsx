@@ -1,7 +1,9 @@
 import { format } from "date-fns";
+import Link from "next/link";
 import { LeadTable } from "@/components/admin/LeadTable";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { signOutAction } from "@/lib/auth/actions";
+import { cn } from "@/lib/utils";
 import { PERMISSIONS } from "@/lib/auth/permissions";
 import { requirePermissionForPage } from "@/lib/auth/guards";
 import { db } from "@/lib/db";
@@ -31,11 +33,16 @@ export default async function AdminDashboardPage() {
             {newCount === 1 ? "" : "s"}
           </p>
         </div>
-        <form action={signOutAction}>
-          <Button type="submit" variant="outline">
-            Sign Out
-          </Button>
-        </form>
+        <div className="flex items-center gap-3">
+          <Link href="/" className={cn(buttonVariants({ variant: "outline" }))}>
+            Home
+          </Link>
+          <form action={signOutAction}>
+            <Button type="submit" variant="outline">
+              Sign Out
+            </Button>
+          </form>
+        </div>
       </div>
 
       <LeadTable leads={serializedLeads} />

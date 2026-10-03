@@ -12,7 +12,7 @@ export function Footer() {
   const email = SITE_EMAIL;
   const address = SITE_ADDRESS;
 
-  if (pathname.startsWith("/admin")) return null;
+  if (pathname.startsWith("/admin") && pathname !== "/admin") return null;
 
   return (
     <footer className="border-t border-slate-200 bg-navy-950 text-slate-200">
@@ -94,7 +94,8 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/10 py-4 text-center text-xs text-slate-400">
-        © {new Date().getFullYear()} {SITE_NAME}. All rights reserved.
+        <p>© {new Date().getFullYear()} {SITE_NAME}. All rights reserved.</p>
+        <p className="mt-1">This website is built by Deepak Mahanta</p>
       </div>
     </footer>
   );
